@@ -51,7 +51,11 @@ func ConnectDatabase() {
 
 	DB = db
 
-	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(
+		&models.User{},
+		&models.Category{},
+		&models.Product{},
+	)
 
 	log.Println("📦 User table migrated.")
 	log.Println("✅ Connected to MSSQL database.")

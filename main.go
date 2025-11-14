@@ -2,22 +2,33 @@ package main
 
 import (
 	"ecom-go/config"
-	"log"
+	"ecom-go/routes"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	config.ConnectDatabase()
 
-	sqlDB, err := config.DB.DB()
+	r := gin.Default()
 
-	if err != nil {
-		log.Fatalf("can not get sqlDB: %v", err)
+	routes.AuthRoutes(r)
+	routes.UserProtectedRoutes(r)
+	routes.CategoryRoutes(r)
+	routes.ProductRoutes(r)
 
-	}
+	r.Run(":8080")
 
-	if err := sqlDB.Ping(); err != nil {
-		log.Fatalf("ping failed: %v", err)
-	}
+	// sqlDB, err := config.DB.DB()
 
-	log.Println("DB ping successful. You're ready to continue.")
+	// if err != nil {
+	// 	log.Fatalf("can not get sqlDB: %v", err)
+
+	// }
+
+	// if err := sqlDB.Ping(); err != nil {
+	// 	log.Fatalf("ping failed: %v", err)
+	// }
+
+	// log.Println("DB ping successful. You're ready to continue.")
 }
