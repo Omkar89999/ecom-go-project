@@ -17,6 +17,8 @@ func main() {
 	routes.CategoryRoutes(r)
 	routes.ProductRoutes(r)
 
+	routes.CartRoute(r)
+
 	r.Run(":8080")
 
 	// sqlDB, err := config.DB.DB()

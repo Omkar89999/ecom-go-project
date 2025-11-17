@@ -24,6 +24,7 @@ func CreateProduct(c *gin.Context) {
 	}
 
 	config.DB.Create(&product)
+	config.DB.Preload("Category").First(&product, product.ID)
 	c.JSON(http.StatusCreated, gin.H{"product": product})
 }
 

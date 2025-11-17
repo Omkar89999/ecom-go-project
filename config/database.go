@@ -55,6 +55,7 @@ func ConnectDatabase() {
 		&models.User{},
 		&models.Category{},
 		&models.Product{},
+		&models.Cart{},
 	)
 
 	log.Println("📦 User table migrated.")
